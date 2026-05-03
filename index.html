@@ -1,48 +1,104 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8">
   <title>Kebunsaham</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- TAILWIND -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS ANIMATION -->
+  <link rel="stylesheet"
+        href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 </head>
 
 <body class="text-white font-sans bg-black relative overflow-x-hidden">
 
 <!-- BACKGROUND -->
 <div class="fixed inset-0 -z-10">
+
   <div class="absolute inset-0 bg-black"></div>
 
-  <div class="absolute top-[-150px] left-1/2 -translate-x-1/2 w-[1000px] h-[900px] bg-green-500 opacity-20 blur-[220px]"></div>
+  <!-- MAIN TOP GLOW -->
+  <div class="absolute top-[-150px] left-1/2 -translate-x-1/2
+              w-[1000px] h-[900px]
+              bg-green-500 opacity-20 blur-[220px]"></div>
 
-  <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-emerald-400 opacity-5 blur-[200px]"></div>
+  <!-- BOTTOM GLOW -->
+  <div class="absolute bottom-0 right-0
+              w-[500px] h-[500px]
+              bg-emerald-400 opacity-5 blur-[200px]"></div>
 
+  <!-- EXTRA RANDOM GLOWS -->
+  <div class="absolute top-[35%] left-[-120px]
+              w-[350px] h-[350px]
+              bg-emerald-500 opacity-10 blur-[160px] rounded-full"></div>
+
+  <div class="absolute top-[55%] right-[-100px]
+              w-[300px] h-[300px]
+              bg-green-400 opacity-10 blur-[150px] rounded-full"></div>
+
+  <div class="absolute top-[75%] left-1/2 -translate-x-1/2
+              w-[250px] h-[250px]
+              bg-lime-400 opacity-5 blur-[140px] rounded-full"></div>
+
+  <div class="absolute top-[10%] right-[10%]
+              w-[220px] h-[220px]
+              bg-emerald-300 opacity-5 blur-[120px] rounded-full"></div>
+
+  <!-- OVERLAY -->
   <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black"></div>
+
 </div>
 
 <!-- NAVBAR -->
 <nav class="sticky top-0 z-50 flex justify-between items-center px-10 md:px-16 py-4 backdrop-blur-md bg-black/30">
 
+  <!-- LOGO -->
   <a href="#" class="flex items-center hover:opacity-80 transition">
-    <img src="./images/logo.jpg.png" class="h-16 md:h-20 object-contain">
+    <img src="./images/logo.jpg.png"
+         class="h-16 md:h-20 object-contain">
   </a>
 
+  <!-- SOCIALS -->
   <div class="ml-auto flex items-center gap-6">
 
-    <a href="https://wa.me/6281330536588" target="_blank" class="hover:scale-110 transition">
-      <img src="./images/whatsapp.jpg" class="w-16 h-20 object-contain">
+    <a href="https://wa.me/6281330536588"
+       target="_blank"
+       class="hover:scale-110 transition">
+
+      <img src="./images/whatsapp.jpg"
+           class="w-16 h-20 object-contain">
+
     </a>
 
-    <a href="https://www.tiktok.com/@kebunsaham" target="_blank" class="hover:scale-110 transition">
-      <img src="./images/tiktok.jpg" class="w-16 h-20 object-contain">
+    <a href="https://www.tiktok.com/@kebunsaham"
+       target="_blank"
+       class="hover:scale-110 transition">
+
+      <img src="./images/tiktok.jpg"
+           class="w-16 h-20 object-contain">
+
     </a>
 
-    <a href="https://www.youtube.com/@kebunsaham" target="_blank" class="hover:scale-110 transition">
-      <img src="./images/youtube.jpg" class="w-16 h-20 object-contain">
+    <a href="https://www.youtube.com/@kebunsaham"
+       target="_blank"
+       class="hover:scale-110 transition">
+
+      <img src="./images/youtube.jpg"
+           class="w-16 h-20 object-contain">
+
     </a>
 
-    <a href="https://instagram.com/kebunsaham" target="_blank" class="hover:scale-110 transition">
-      <img src="./images/instagram.jpg" class="w-16 h-20 object-contain">
+    <a href="https://instagram.com/kebunsaham"
+       target="_blank"
+       class="hover:scale-110 transition">
+
+      <img src="./images/instagram.jpg"
+           class="w-16 h-20 object-contain">
+
     </a>
 
   </div>
@@ -50,88 +106,189 @@
 </nav>
 
 <!-- FLOATING TELEGRAM -->
-<a href="https://t.me/kebunsahamgrup" target="_blank" class="fixed bottom-6 right-6 z-50">
-  <div class="bg-gradient-to-r from-blue-500 to-black px-5 py-0 rounded-2xl shadow-xl hover:scale-105 transition duration-300">
-    <img src="./images/Gabung.png" class="w-80 object-contain">
+<a href="https://t.me/kebunsahamgrup"
+   target="_blank"
+   class="fixed bottom-6 right-6 z-50">
+
+  <div class="bg-gradient-to-r from-blue-500 to-black
+              px-5 py-0 rounded-2xl
+              shadow-xl
+              hover:scale-105
+              transition duration-300">
+
+    <img src="./images/Gabung.png"
+         class="w-80 object-contain">
+
   </div>
+
 </a>
 
 <!-- HERO -->
-<section class="text-center py-28 px-6">
+<section data-aos="fade-up"
+         class="text-center py-28 px-6">
+
   <h1 class="text-4xl md:text-6xl font-bold mb-6">
+
     Sinyal Trading Konsisten <br>
+
     <span class="bg-gradient-to-r from-green-400 to-emerald-300 text-transparent bg-clip-text">
       Dengan Live Market Harian
     </span>
+
   </h1>
 
   <p class="text-gray-400 mb-8 max-w-xl mx-auto">
     Sinyal forex, saham, dan crypto dengan analisa langsung setiap hari.
   </p>
 
-  <a href="https://t.me/kebunsahamgrup"
-     class="bg-gradient-to-r from-green-500 to-emerald-400 hover:scale-105 hover:shadow-lg hover:shadow-green-500/30 transition px-8 py-3 rounded-xl font-semibold">
+  <a href="#pilihan-program"
+     class="bg-gradient-to-r from-green-500 to-emerald-400
+            hover:scale-105
+            hover:shadow-lg
+            hover:shadow-green-500/30
+            transition
+            px-8 py-3 rounded-xl font-semibold">
+
      Gabung Sekarang
+
   </a>
+
 </section>
 
 <!-- PROOF -->
-<section class="py-20 px-6 text-center">
-  <h2 class="text-2xl font-bold mb-4">Hasil</h2>
+<section data-aos="zoom-in"
+         class="py-20 px-6 text-center">
+
+  <h2 class="text-2xl font-bold mb-4">
+    Hasil
+  </h2>
 
   <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-    <img src="./images/trade1.jpg.png" class="rounded-2xl border border-white/10 shadow-lg">
-    <img src="./images/trade2.jpg.png" class="rounded-2xl border border-white/10 shadow-lg">
-    <img src="./images/trade3.jpg.png" class="rounded-2xl border border-white/10 shadow-lg">
+
+    <img src="./images/trade1.jpg.png"
+         data-aos="fade-up"
+         data-aos-delay="100"
+         class="rounded-2xl border border-white/10 shadow-lg">
+
+    <img src="./images/trade2.jpg.png"
+         data-aos="fade-up"
+         data-aos-delay="200"
+         class="rounded-2xl border border-white/10 shadow-lg">
+
+    <img src="./images/trade3.jpg.png"
+         data-aos="fade-up"
+         data-aos-delay="300"
+         class="rounded-2xl border border-white/10 shadow-lg">
+
   </div>
+
 </section>
 
-<!-- TESTIMONIAL IMAGES -->
-<section class="py-20 px-6 text-center">
-  <h2 class="text-2xl font-bold mb-4">Testimoni Members</h2>
-  <p class="text-gray-400 mb-10">Hasil real dari member</p>
+<!-- TESTIMONIAL -->
+<section data-aos="fade-up"
+         class="py-20 px-6 text-center">
 
-  <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+  <h2 class="text-2xl font-bold mb-4">
+    Testimoni Members
+  </h2>
+
+  <p class="text-gray-400 mb-10">
+    Hasil real dari member
+  </p>
+
+  <!-- MASONRY -->
+  <div class="columns-1 md:columns-3 gap-5 max-w-5xl mx-auto space-y-3">
 
     <img src="./images/testi1.jpeg"
-         class="rounded-2xl border border-white/10 shadow-lg object-cover">
+         data-aos="fade-up"
+         data-aos-delay="100"
+         class="mb-3 rounded-2xl border border-white/10 shadow-lg object-cover">
 
     <img src="./images/testi2.jpeg"
-         class="rounded-2xl border border-white/10 shadow-lg object-cover">
+         data-aos="fade-up"
+         data-aos-delay="200"
+         class="mb-3 rounded-2xl border border-white/10 shadow-lg object-cover">
 
     <img src="./images/testi3.jpeg"
-         class="rounded-2xl border border-white/10 shadow-lg object-cover">
+         data-aos="fade-up"
+         data-aos-delay="300"
+         class="mb-3 rounded-2xl border border-white/10 shadow-lg object-cover">
+
+    <img src="./images/testi4.jpeg"
+         data-aos="fade-up"
+         data-aos-delay="100"
+         class="mb-3 rounded-2xl border border-white/10 shadow-lg object-cover">
+
+    <img src="./images/testi5.jpeg"
+         data-aos="fade-up"
+         data-aos-delay="200"
+         class="mb-3 rounded-2xl border border-white/10 shadow-lg object-cover">
+
+    <img src="./images/testi6.jpeg"
+         data-aos="fade-up"
+         data-aos-delay="300"
+         class="mb-3 rounded-2xl border border-white/10 shadow-lg object-cover">
+
+    <img src="./images/testi7.jpeg"
+         data-aos="fade-up"
+         data-aos-delay="400"
+         class="mb-3 rounded-2xl border border-white/10 shadow-lg object-cover">
 
   </div>
+
 </section>
 
 <!-- TESTIMONIAL GROUP -->
-<section class="py-20 px-6 text-center">
-  <p class="text-gray-400 mb-6">Lihat hasil testimonial member di grup WhatsApp</p>
+<section data-aos="fade-up"
+         class="pt-2 pb-20 px-6 text-center">
+
+  <p class="text-gray-400 mb-6">
+    Lihat hasil testimonial member di grup WhatsApp
+  </p>
 
   <a href="https://www.whatsapp.com/channel/0029VauIjRY6rsQjOSuLV10e"
      class="bg-green-500 hover:scale-105 transition px-6 py-3 rounded-lg font-semibold">
+
      Masuk Grup Testimoni
+
   </a>
+
 </section>
 
 <!-- OFFER -->
-<section class="py-20 px-6">
-  <h2 class="text-2xl font-bold text-center mb-12">Yang Kamu Dapatkan</h2>
+<section data-aos="fade-up"
+         class="py-20 px-6">
+
+  <h2 class="text-2xl font-bold text-center mb-12">
+    Yang Kamu Dapatkan
+  </h2>
 
   <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
 
-    <div class="bg-white/5 border border-white/10 p-6 rounded-xl">
-      <h3 class="text-xl font-semibold mb-4">VIP Gold</h3>
+    <div data-aos="fade-up"
+         data-aos-delay="100"
+         class="bg-white/5 border border-white/10 p-6 rounded-xl">
+
+      <h3 class="text-xl font-semibold mb-4">
+        VIP Gold
+      </h3>
+
       <ul class="text-gray-400 space-y-2 text-left">
         <li>• Sinyal Gold harian</li>
         <li>• Setup entry, SL, TP jelas</li>
         <li>• Update market live</li>
       </ul>
+
     </div>
 
-    <div class="bg-white/5 border border-white/10 p-6 rounded-xl">
-      <h3 class="text-xl font-semibold mb-4">VIPC</h3>
+    <div data-aos="fade-up"
+         data-aos-delay="200"
+         class="bg-white/5 border border-white/10 p-6 rounded-xl">
+
+      <h3 class="text-xl font-semibold mb-4">
+        VIPC
+      </h3>
+
       <ul class="text-gray-400 space-y-2 text-left">
         <li>• Dana Pensiun</li>
         <li>• Pelindung Equity Gold</li>
@@ -139,65 +296,124 @@
         <li>• Pelindung pajak Waris</li>
         <li>• Pendidikan Anak</li>
       </ul>
+
     </div>
 
-    <div class="bg-white/5 border border-white/10 p-6 rounded-xl">
-      <h3 class="text-xl font-semibold mb-4">Coaching 1 on 1</h3>
+    <div data-aos="fade-up"
+         data-aos-delay="300"
+         class="bg-white/5 border border-white/10 p-6 rounded-xl">
+
+      <h3 class="text-xl font-semibold mb-4">
+        Coaching 1 on 1
+      </h3>
+
       <ul class="text-gray-400 space-y-2 text-left">
         <li>• Sistem trading lengkap</li>
         <li>• Teknik entry & exit</li>
         <li>• Mindset & psychology</li>
         <li>• Direct mentoring</li>
       </ul>
+
     </div>
 
   </div>
+
 </section>
 
 <!-- PRICING -->
-<section class="py-20 px-6 text-center">
-  <h2 class="text-2xl font-bold mb-10">Pilihan Program</h2>
+<section id="pilihan-program"
+         data-aos="fade-up"
+         class="py-20 px-6 text-center">
+
+  <h2 class="text-2xl font-bold mb-10">
+    Pilihan Program
+  </h2>
 
   <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
 
-    <div class="bg-white/5 border border-white/10 p-6 rounded-xl">
-      <h3 class="text-xl font-semibold mb-2">VIP GOLD</h3>
-      <p class="text-gray-400 mb-4">Sinyal Gold Harian</p>
-      <p class="text-2xl font-bold mb-4">2 Juta</p>
+    <div data-aos="zoom-in"
+         data-aos-delay="100"
+         class="bg-white/5 border border-white/10 p-6 rounded-xl">
 
-      <a href="https://t.me/kebunsahamgrup"
-         class="inline-block bg-gradient-to-r from-green-500 to-emerald-400 hover:scale-105 transition px-6 py-2 rounded-lg font-semibold">
-         Hubungi
-      </a>
-    </div>
+      <h3 class="text-xl font-semibold mb-2">
+        VIP GOLD
+      </h3>
 
-    <div class="bg-white/5 border border-white/10 p-6 rounded-xl">
-      <h3 class="text-xl font-semibold mb-2">VIPC</h3>
-      <p class="text-gray-400 mb-4">Tim Kebunsaham</p>
-      <p class="text-2xl font-bold mb-4">2.5 - 25 Juta</p>
+      <p class="text-gray-400 mb-4">
+        Sinyal Gold Harian
+      </p>
 
-      <a href="https://t.me/kebunsahamgrup"
-         class="inline-block bg-gradient-to-r from-green-500 to-emerald-400 hover:scale-105 transition px-6 py-2 rounded-lg font-semibold">
-         Hubungi
-      </a>
-    </div>
-
-    <div class="bg-white/5 border border-white/10 p-6 rounded-xl">
-      <h3 class="text-xl font-semibold mb-2">Coaching</h3>
-      <p class="text-gray-400 mb-4">Basic & Advanced</p>
-      <p class="text-2xl font-bold mb-4">12 Juta</p>
+      <p class="text-2xl font-bold mb-4">
+        2 Juta
+      </p>
 
       <a href="https://wa.me/6281330536588"
-         class="inline-block bg-green-500 hover:scale-105 transition px-6 py-2 rounded-lg font-semibold">
+         class="inline-block bg-gradient-to-r from-green-500 to-emerald-400 hover:scale-105 transition px-6 py-2 rounded-lg font-semibold">
+
          Hubungi
+
       </a>
+
+    </div>
+
+    <div data-aos="zoom-in"
+         data-aos-delay="200"
+         class="bg-white/5 border border-white/10 p-6 rounded-xl">
+
+      <h3 class="text-xl font-semibold mb-2">
+        VIPC
+      </h3>
+
+      <p class="text-gray-400 mb-4">
+        Tim Kebunsaham
+      </p>
+
+      <p class="text-2xl font-bold mb-4">
+        2.5 - 25 Juta
+      </p>
+
+      <a href="https://wa.me/6281330536588"
+         class="inline-block bg-gradient-to-r from-green-500 to-emerald-400 hover:scale-105 transition px-6 py-2 rounded-lg font-semibold">
+
+         Hubungi
+
+      </a>
+
+    </div>
+
+    <div data-aos="zoom-in"
+         data-aos-delay="300"
+         class="bg-white/5 border border-white/10 p-6 rounded-xl">
+
+      <h3 class="text-xl font-semibold mb-2">
+        Coaching
+      </h3>
+
+      <p class="text-gray-400 mb-4">
+        Basic & Advanced
+      </p>
+
+      <p class="text-2xl font-bold mb-4">
+        12 Juta
+      </p>
+
+      <a href="http://wa.me/6281330536588?text=Join%20Pelatihan%20Lengkap"
+         class="inline-block bg-green-500 hover:scale-105 transition px-6 py-2 rounded-lg font-semibold">
+
+         Hubungi
+
+      </a>
+
     </div>
 
   </div>
+
 </section>
 
 <!-- CTA -->
-<section class="py-24 text-center">
+<section data-aos="zoom-in"
+         class="py-24 text-center">
+
   <h2 class="text-3xl font-bold mb-6">
     Mulai Trading Dengan Kebunsaham
   </h2>
@@ -206,11 +422,29 @@
     Gabung sekarang dan mulai konsisten di market.
   </p>
 
-  <a href="https://t.me/kebunsahamgrup"
-     class="bg-gradient-to-r from-green-500 to-emerald-400 hover:scale-105 hover:shadow-lg hover:shadow-green-500/30 transition px-10 py-4 rounded-xl font-semibold">
+  <a href="#pilihan-program"
+     class="bg-gradient-to-r from-green-500 to-emerald-400
+            hover:scale-105
+            hover:shadow-lg
+            hover:shadow-green-500/30
+            transition
+            px-10 py-4 rounded-xl font-semibold">
+
      Gabung Sekarang
+
   </a>
+
 </section>
+
+<!-- AOS SCRIPT -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true,
+  });
+</script>
 
 </body>
 </html>
