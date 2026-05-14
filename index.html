@@ -9,33 +9,512 @@
   <!-- TAILWIND -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- AOS ANIMATION -->
+  <!-- AOS -->
   <link rel="stylesheet"
         href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 </head>
 
 <body class="text-white font-sans bg-black relative overflow-x-hidden">
+  
+<!-- HAMBURGER MENU -->
+<div class="mobile-menu-btn" onclick="toggleMenu()">
 
-  <style>
+  <span></span>
+  <span></span>
+  <span></span>
 
-  /* HIDE SCROLLBAR */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
+</div>
+
+<!-- MENU CONTENT -->
+<div class="mobile-menu" id="mobileMenu">
+
+  <a href="#testimoni">
+    Testimoni
+  </a>
+
+  <a href="#hasiltrade">
+    Hasil Trade
+  </a>
+
+  <a href="#program">
+    Pilihan Program
+  </a>
+
+</div>
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* =========================
+   GREEN LINE
+========================= */
+
+.green-line {
+  position: relative;
+  max-width: 1280px;
+  margin: auto;
+  padding: 10px 24px;
+}
+
+.green-line .line {
+  height: 2px;
+  width: 100%;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #4ade80,
+    transparent
+  );
+}
+
+.green-line .glow {
+  position: absolute;
+  inset: 0;
+  height: 2px;
+  width: 100%;
+  border-radius: 999px;
+  opacity: .7;
+  filter: blur(8px);
+  background: linear-gradient(
+    to right,
+    transparent,
+    #22c55e,
+    transparent
+  );
+}
+
+/* =========================
+   SLIDER
+========================= */
+
+.slider-container {
+  position: relative;
+  max-width: 980px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.slider-track {
+  position: relative;
+  width: 100%;
+  height: 520px;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0;
+  transition: opacity .8s ease;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  pointer-events: none;
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.slide-item {
+  width: 100%;
+  max-width: 300px;
+  height: 520px;
+  flex-shrink: 0;
+}
+
+.slide-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,.08);
+
+  box-shadow: 0 20px 50px rgba(0,0,0,.45);
+}
+
+/* =========================
+   LAPTOP FIX
+========================= */
+
+@media (max-width: 1600px) {
+
+  .slider-track {
+    height: 460px;
   }
 
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  .slide-item {
+    max-width: 260px;
+    height: 460px;
   }
 
-  /* SNAP */
-  .snap-x {
-    scroll-snap-type: x mandatory;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1024px) {
+
+  .slider-track {
+    height: 420px;
   }
 
-  .snap-center {
-    scroll-snap-align: center;
+  .slide-item {
+    max-width: 220px;
+    height: 420px;
   }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .slider-track {
+    height: 420px;
+  }
+
+  .slide {
+    gap: 12px;
+  }
+
+  .slide-item {
+    max-width: 48%;
+    height: 420px;
+  }
+
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 540px) {
+
+  .slider-track {
+    height: 400px;
+  }
+
+  .slide-item {
+    max-width: 100%;
+    height: 400px;
+  }
+
+}
+
+/* =========================
+   SLIDER CONTROLS
+========================= */
+
+.slider-controls {
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 22px;
+
+  margin-top: 34px;
+
+}
+
+.slider-dots {
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.slider-dot {
+
+  width: 10px;
+  height: 10px;
+
+  border-radius: 999px;
+
+  background: rgba(255,255,255,.15);
+
+  transition: .35s ease;
+
+  cursor: pointer;
+
+}
+
+.slider-dot.active {
+
+  width: 34px;
+
+  background: linear-gradient(
+    to right,
+    #22c55e,
+    #ffffff
+  );
+
+  box-shadow: 0 0 18px rgba(34,197,94,.45);
+
+}
+
+.slider-arrows {
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+}
+
+.arrow-btn {
+
+  width: 56px;
+  height: 56px;
+
+  border-radius: 18px;
+
+  background: rgba(255,255,255,.03);
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+  color: white;
+
+  transition: .3s ease;
+
+  cursor: pointer;
+
+}
+
+.arrow-btn:hover {
+
+  transform: translateY(-2px);
+
+  border-color: rgba(255,255,255,.2);
+
+  background: rgba(255,255,255,.06);
+
+  box-shadow: 0 0 30px rgba(255,255,255,.05);
+}
+
+/* =========================
+   FEATURED GRID
+========================= */
+
+.program-card {
+
+  background: rgba(255,255,255,.04);
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  border-radius: 28px;
+
+  padding: 36px;
+
+  backdrop-filter: blur(20px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-height: 520px;
+
+  transition: .4s ease;
+}
+
+.program-card:hover {
+
+  transform: translateY(-8px);
+
+  border-color: rgba(74,222,128,.4);
+
+  box-shadow: 0 0 40px rgba(34,197,94,.15);
+
+}
+
+.program-content {
+  flex: 1;
+}
+
+.program-button {
+  margin-top: 32px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.main-btn {
+
+  display: inline-block;
+
+  background: linear-gradient(to right,#22c55e,#34d399);
+
+  padding: 16px 34px;
+
+  border-radius: 18px;
+
+  font-weight: bold;
+
+  transition: .3s;
+}
+
+.main-btn:hover {
+
+  transform: scale(1.05);
+
+  box-shadow: 0 0 30px rgba(34,197,94,.35);
+
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu-btn {
+
+  position: fixed;
+
+  top: 24px;
+  left: 24px;
+
+  width: 56px;
+  height: 56px;
+
+  border-radius: 18px;
+
+  background: rgba(255,255,255,.05);
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  backdrop-filter: blur(12px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 6px;
+
+  cursor: pointer;
+
+  z-index: 999;
+
+  transition: .3s ease;
+
+}
+
+.mobile-menu-btn:hover {
+
+  background: rgba(255,255,255,.08);
+
+  border-color: rgba(34,197,94,.35);
+
+}
+
+.mobile-menu-btn span {
+
+  width: 24px;
+  height: 2px;
+
+  border-radius: 999px;
+
+  background: white;
+
+}
+
+.mobile-menu {
+
+  position: fixed;
+
+  top: 95px;
+  left: 24px;
+
+  width: 240px;
+
+  background: rgba(0,0,0,.85);
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  backdrop-filter: blur(20px);
+
+  border-radius: 24px;
+
+  padding: 20px;
+
+  z-index: 999;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform: translateY(-10px);
+
+  transition: .3s ease;
+
+}
+
+.mobile-menu.active {
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transform: translateY(0);
+
+}
+
+.mobile-menu a {
+
+  display: block;
+
+  padding: 14px 16px;
+
+  border-radius: 14px;
+
+  color: white;
+
+  text-decoration: none;
+
+  transition: .25s ease;
+
+  margin-bottom: 8px;
+
+}
+
+.mobile-menu a:hover {
+
+  background: rgba(34,197,94,.12);
+
+  color: #4ade80;
+
+}
 
 </style>
 
@@ -44,17 +523,14 @@
 
   <div class="absolute inset-0 bg-black"></div>
 
-  <!-- MAIN TOP GLOW -->
   <div class="absolute top-[-150px] left-1/2 -translate-x-1/2
               w-[1000px] h-[900px]
               bg-green-500 opacity-20 blur-[220px]"></div>
 
-  <!-- BOTTOM GLOW -->
   <div class="absolute bottom-0 right-0
               w-[500px] h-[500px]
               bg-emerald-400 opacity-5 blur-[200px]"></div>
 
-  <!-- EXTRA RANDOM GLOWS -->
   <div class="absolute top-[35%] left-[-120px]
               w-[350px] h-[350px]
               bg-emerald-500 opacity-10 blur-[160px] rounded-full"></div>
@@ -63,84 +539,57 @@
               w-[300px] h-[300px]
               bg-green-400 opacity-10 blur-[150px] rounded-full"></div>
 
-  <div class="absolute top-[75%] left-1/2 -translate-x-1/2
-              w-[250px] h-[250px]
-              bg-lime-400 opacity-5 blur-[140px] rounded-full"></div>
-
-  <div class="absolute top-[10%] right-[10%]
-              w-[220px] h-[220px]
-              bg-emerald-300 opacity-5 blur-[120px] rounded-full"></div>
-
-  <!-- OVERLAY -->
   <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black"></div>
 
 </div>
 
 <!-- NAVBAR -->
-<nav class="sticky top-0 z-50 flex justify-between items-center px-10 md:px-16 py-4 backdrop-blur-md bg-black/30">
+<nav class="sticky top-0 z-50 flex justify-between items-center px-6 md:px-16 py-4 backdrop-blur-md bg-black/30">
 
-  <!-- LOGO -->
-  <a href="#" class="flex items-center hover:opacity-80 transition">
+  <a href="#">
     <img src="./images/logo.jpg.png"
          class="h-16 md:h-20 object-contain">
   </a>
 
-  <!-- SOCIALS -->
-  <div class="ml-auto flex items-center gap-6">
+  <div class="flex items-center gap-4 md:gap-6">
 
-    <a href="https://wa.me/6281330536588"
-       target="_blank"
-       class="hover:scale-110 transition">
-
+    <a href="https://wa.me/6281330536588" target="_blank">
       <img src="./images/whatsapp.jpg"
-           class="w-16 h-20 object-contain">
-
+           class="w-12 md:w-16 object-contain hover:scale-110 transition">
     </a>
 
-    <a href="https://www.tiktok.com/@kebunsaham"
-       target="_blank"
-       class="hover:scale-110 transition">
-
+    <a href="https://www.tiktok.com/@kebunsaham" target="_blank">
       <img src="./images/tiktok.jpg"
-           class="w-16 h-20 object-contain">
-
+           class="w-12 md:w-16 object-contain hover:scale-110 transition">
     </a>
 
-    <a href="https://www.youtube.com/@kebunsaham"
-       target="_blank"
-       class="hover:scale-110 transition">
-
+    <a href="https://www.youtube.com/@kebunsaham" target="_blank">
       <img src="./images/youtube.jpg"
-           class="w-16 h-20 object-contain">
-
+           class="w-12 md:w-16 object-contain hover:scale-110 transition">
     </a>
 
-    <a href="https://instagram.com/kebunsaham"
-       target="_blank"
-       class="hover:scale-110 transition">
-
+    <a href="https://instagram.com/kebunsaham" target="_blank">
       <img src="./images/instagram.jpg"
-           class="w-16 h-20 object-contain">
-
+           class="w-12 md:w-16 object-contain hover:scale-110 transition">
     </a>
 
   </div>
 
 </nav>
 
-<!-- FLOATING TELEGRAM -->
+<!-- FLOATING BUTTON -->
 <a href="https://t.me/kebunsahamgrup"
    target="_blank"
    class="fixed bottom-6 right-6 z-50">
 
   <div class="bg-gradient-to-r from-blue-500 to-black
-              px-5 py-0 rounded-2xl
-              shadow-xl
+              px-5 rounded-2xl
+              shadow-2xl
               hover:scale-105
-              transition duration-300">
+              transition">
 
     <img src="./images/Gabung.png"
-         class="w-80 object-contain">
+         class="w-64 md:w-80 object-contain">
 
   </div>
 
@@ -150,141 +599,50 @@
 <section data-aos="fade-up"
          class="text-center py-28 px-6">
 
-  <h1 class="text-4xl md:text-6xl font-bold mb-6">
+  <div class="max-w-5xl mx-auto">
 
-    Sinyal Cuan, Anti Ribet! <br>
+    <h1 class="text-4xl md:text-7xl font-bold leading-tight mb-8">
 
-    <span class="bg-gradient-to-r from-green-400 to-emerald-300 text-transparent bg-clip-text">
-      Dengan Live Market Harian
-    </span>
+      Bangun Kebebasan Finansial Dari
 
-  </h1>
+      <span class="bg-gradient-to-r from-green-400 to-emerald-300 text-transparent bg-clip-text">
 
-  <p class="text-gray-400 text-lg mb-8 mx-auto whitespace-nowrap">
-    Dapatkan panduan trading Forex, Saham, dan Crypto dengan analisa live setiap hari.
-  </p>
+        Sinyal Gold Hingga +12.000%
+        & Auto Trade Crypto
 
-  <a href="#pilihan-program"
-     class="bg-gradient-to-r from-green-500 to-emerald-400
-            hover:scale-105
-            hover:shadow-lg
-            hover:shadow-green-500/30
-            transition
-            px-8 py-3 rounded-xl font-semibold">
-
-     Gas, Join Sekarang!
-
-  </a>
-
-</section>
-
-<!-- GREEN LINE -->
-<div data-aos="fade-up"
-     class="max-w-7xl mx-auto px-6 py-2">
-
-  <div class="relative">
-
-    <!-- MAIN LINE -->
-    <div class="h-[2px] w-full rounded-full
-                bg-gradient-to-r
-                from-transparent
-                via-green-400
-                to-transparent">
-    </div>
-
-    <!-- GLOW EFFECT -->
-    <div class="absolute inset-0 blur-md opacity-70
-                h-[2px] w-full rounded-full
-                bg-gradient-to-r
-                from-transparent
-                via-green-500
-                to-transparent">
-    </div>
-
-  </div>
-
-</div>
-
-<!-- ABOUT -->
-<section data-aos="fade-up"
-         class="py-20 px-6">
-
-  <div class="max-w-5xl mx-auto text-center">
-
-    <h1 class="text-3xl md:text-4xl font-bold mb-10 leading-tight">
-
-      Kenapa Harus Kebunsaham? <br>
+      </span>
 
     </h1>
 
-    <div class="space-y-6 text-gray-300 text-lg md:text-xl leading-loose max-w-4xl mx-auto">
+    <p class="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
 
-<p>
-  <span class="font-bold text-white">
-  Kebunsaham adalah nama sebuah komunitas,
-  </span>
-  kita bukan pemain baru.
+      Join komunitas trading terbesar Kebunsaham.
+      Dapatkan sinyal, analisa market, dan sistem auto-trade
+      untuk membantu profit lebih konsisten.
 
-  <br><br>
+    </p>
 
-  kita sudah riset dan "bertempur"di market
-  <span class="font-bold text-green-400">
-    sejak tahun 2009.
-  </span>
-  Strategi yang kita pakai sudah teruji
-  <span class="font-bold text-green-400">
-    bertahan (survive) dan konsisten profit.
-  </span>
-  yang menurut keyakinan kami sudah bisa berhasil
-  <span class="font-bold text-white">
-    survive di market.
-  </span>
+    <div class="flex flex-col md:flex-row justify-center gap-4">
 
-  <br><br>
+      <a href="#program"
+         class="main-btn">
 
-  </span>
-  Trading mengandung
+        Join Sekarang
 
-  <span class="font-bold text-red-400">
-    risiko dan dorongan emosi,
-  </span>
-  sehingga tidak cocok untuk sebagian orang. Kebunsaham datang sebagai solusi untuk masalah-masalah tersebut.
-</p>
+      </a>
 
-<!-- PRESTASI -->
-<section data-aos="fade-up"
-         class="py-20 px-6">
+      <a href="https://t.me/kebunsahamgrup"
+         target="_blank"
+         class="border border-white/10
+                bg-white/5
+                hover:bg-white/10
+                transition
+                px-10 py-4 rounded-2xl
+                font-semibold">
 
-  <div class="max-w-5xl mx-auto">
+        Lihat Komunitas
 
-    <div class="space-y-8 text-gray-300 text-lg md:text-xl leading-loose max-w-4xl mx-auto text-left">
-
-      <p>
-        <span class="font-bold text-green-400">
-          1. LULUS Certified Trader
-        </span><br>
-        Bukan trader kaleng-kaleng, lulusan Certified Trader top 30%.
-      </p>
-
-      <p>
-        <span class="font-bold text-green-400">
-          2. Rekor Profit nyata
-        </span><br>
-        Total lebih dari
-        <span class="font-bold text-white">
-        310.000+ PIPS
-        </span>
-        sudah kita dapatkan bareng komunitas.
-      </p>
-
-      <p>
-        <span class="font-bold text-green-400">
-          3. Trading Sambil Jalan-Jalan
-        </span><br>
-        Mau di Jepang atau Eropa, sinyal tetap jalan dan tetap 
-        <span class="font-bold text-white">
-        cuan!
-      </p>
+      </a>
 
     </div>
 
@@ -292,121 +650,98 @@
 
 </section>
 
-<!-- GREEN LINE -->
-<div data-aos="fade-up"
-     class="max-w-7xl mx-auto px-6 py-2">
-
-  <div class="relative">
-
-    <!-- MAIN LINE -->
-    <div class="h-[2px] w-full rounded-full
-                bg-gradient-to-r
-                from-transparent
-                via-green-400
-                to-transparent">
-    </div>
-
-    <!-- GLOW EFFECT -->
-    <div class="absolute inset-0 blur-md opacity-70
-                h-[2px] w-full rounded-full
-                bg-gradient-to-r
-                from-transparent
-                via-green-500
-                to-transparent">
-    </div>
-
-  </div>
-
+<!-- LINE -->
+<div class="green-line">
+  <div class="line"></div>
+  <div class="glow"></div>
 </div>
 
-  
-    <!-- HASIL -->
-<section data-aos="fade-up"
-         class="py-20 overflow-hidden">
+<!-- SOCIAL PROOF -->
+<section id="testimoni"
+         data-aos="fade-up"
+         class="py-24 px-6">
 
-  <h2 class="text-3xl text-white font-bold text-center mb-12">
-    Hasil
-  </h2>
+  <div class="text-center mb-14">
 
-  <div id="hasilSlider"
-       class="flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory px-6 scroll-smooth">
+    <h2 class="text-3xl md:text-5xl font-bold mb-4">
+      32.000+ Member Aktif
+    </h2>
 
-    <img src="./images/trade1.jpg.png"
-         class="snap-center shrink-0 w-[85%] md:w-[420px]
-                rounded-3xl border border-white/10 shadow-2xl">
-
-    <img src="./images/trade2.jpg.png"
-         class="snap-center shrink-0 w-[85%] md:w-[420px]
-                rounded-3xl border border-white/10 shadow-2xl">
-
-    <img src="./images/trade3.jpg.png"
-         class="snap-center shrink-0 w-[85%] md:w-[420px]
-                rounded-3xl border border-white/10 shadow-2xl">
+    <p class="text-gray-400 text-lg">
+      Testimoni Member Kebunsaham
+    </p>
 
   </div>
 
-</section>
+  <div class="slider-container">
 
-<!-- GREEN LINE -->
-<div data-aos="fade-up"
-     class="max-w-7xl mx-auto px-6 py-2">
+    <div id="testimonialSlider"
+         class="slider-track">
 
-  <div class="relative">
+      <!-- SLIDE 1 -->
+      <div class="slide active">
 
-    <!-- MAIN LINE -->
-    <div class="h-[2px] w-full rounded-full
-                bg-gradient-to-r
-                from-transparent
-                via-green-400
-                to-transparent">
-    </div>
-
-    <!-- GLOW EFFECT -->
-    <div class="absolute inset-0 blur-md opacity-70
-                h-[2px] w-full rounded-full
-                bg-gradient-to-r
-                from-transparent
-                via-green-500
-                to-transparent">
-    </div>
-
-  </div>
-
-</div>
-
-<!-- CONTOH TRADE -->
-<section data-aos="fade-up"
-         class="py-20 px-6 text-center">
-
-  <h2 class="text-2xl text-white md:text-3xl font-bold mb-4">
-    Contoh Trade & Keberhasilannya
-  </h2>
-
-  <p class="text-gray-400 text-lg mb-14">
-    Perbandingan sebelum entry dan hasil setelah trade dijalankan
-  </p>
-
-  <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-
-    <!-- BEFORE -->
-    <div>
-
-      <p class="text-white md:text-lg text-white-300 mb-4 font-semibold">
-        Sebelum Entry
-      </p>
-
-      <img src="./images/before1.jpg.jpeg"
-               class="rounded-2xl">
+        <div class="slide-item">
+          <img src="./images/testi1.png">
         </div>
 
-    <!-- AFTER -->
-     <div>
-          <p class="mb-4 text-white font-semibold text-white-300">
-            Hasil Trade
-          </p>
+        <div class="slide-item">
+          <img src="./images/testi2.png">
+        </div>
 
-          <img src="./images/after1.jpg.jpeg"
-               class="rounded-2xl">
+        <div class="slide-item">
+          <img src="./images/testi3.png">
+        </div>
+
+      </div>
+
+      <!-- SLIDE 2 -->
+      <div class="slide">
+
+        <div class="slide-item">
+          <img src="./images/testi4.png">
+        </div>
+
+        <div class="slide-item">
+          <img src="./images/testi5.png">
+        </div>
+
+        <div class="slide-item">
+          <img src="./images/testi6.png">
+        </div>
+
+      </div>
+
+      <!-- SLIDE 3 -->
+      <div class="slide">
+
+        <div class="slide-item">
+          <img src="./images/testi7.png">
+        </div>
+
+        <div class="slide-item">
+          <img src="./images/testi8.png">
+        </div>
+
+        <div class="slide-item">
+          <img src="./images/testi9.png">
+        </div>
+
+      </div>
+
+      <!-- SLIDE 4 -->
+      <div class="slide">
+
+        <div class="slide-item">
+          <img src="./images/testi10.png">
+        </div>
+
+        <div class="slide-item">
+          <img src="./images/testi11.png">
+        </div>
+
+        <div class="slide-item">
+          <img src="./images/testi12.png">
         </div>
 
       </div>
@@ -415,69 +750,26 @@
 
   </div>
 
-<!-- GREEN LINE -->
-<div data-aos="fade-up"
-     class="max-w-7xl mx-auto px-6 py-2">
+  <!-- CONTROLS -->
+<div class="slider-controls">
 
-  <div class="relative">
+  <div class="slider-dots" id="testimonialDots"></div>
 
-    <!-- MAIN LINE -->
-    <div class="h-[2px] w-full rounded-full
-                bg-gradient-to-r
-                from-transparent
-                via-green-400
-                to-transparent">
-    </div>
+  <div class="slider-arrows">
 
-    <!-- GLOW EFFECT -->
-    <div class="absolute inset-0 blur-md opacity-70
-                h-[2px] w-full rounded-full
-                bg-gradient-to-r
-                from-transparent
-                via-green-500
-                to-transparent">
-    </div>
+    <button class="arrow-btn"
+            onclick="prevSlide('testimonialSlider')">
+      ←
+    </button>
+
+    <button class="arrow-btn"
+            onclick="nextSlide('testimonialSlider')">
+      →
+    </button>
 
   </div>
 
 </div>
-
-<!-- TESTIMONIAL -->
-<section data-aos="fade-up"
-         class="py-20 px-6 text-center">
-
-  <h2 class="text-2xl font-bold mb-4">
-    Testimoni Members
-  </h2>
-
-  <p class="text-gray-400 mb-10">
-    Hasil real dari member
-  </p>
-
-  <div class="columns-1 md:columns-3 gap-5 max-w-5xl mx-auto space-y-3">
-
-    <img src="./images/testi1.jpeg"
-         class="mb-3 rounded-2xl border border-white/10 shadow-lg object-cover">
-
-    <img src="./images/testi2.jpeg"
-         class="mb-3 rounded-2xl border border-white/10 shadow-lg object-cover">
-
-    <img src="./images/testi3.jpeg"
-         class="mb-3 rounded-2xl border border-white/10 shadow-lg object-cover">
-
-    <img src="./images/testi4.jpeg"
-         class="mb-3 rounded-2xl border border-white/10 shadow-lg object-cover">
-
-    <img src="./images/testi5.jpeg"
-         class="mb-3 rounded-2xl border border-white/10 shadow-lg object-cover">
-
-    <img src="./images/testi6.jpeg"
-         class="mb-3 rounded-2xl border border-white/10 shadow-lg object-cover">
-
-    <img src="./images/testi7.jpeg"
-         class="mb-3 rounded-2xl border border-white/10 shadow-lg object-cover">
-
-  </div>
 
 </section>
 
@@ -498,248 +790,561 @@
 
 </section>
 
-<!-- GREEN LINE -->
-<div data-aos="fade-up"
-     class="max-w-7xl mx-auto px-6 py-2">
+<!-- LINE -->
+<div class="green-line">
+  <div class="line"></div>
+  <div class="glow"></div>
+</div>
 
-  <div class="relative">
+<!-- HASIL -->
+<section id="hasiltrade"
+         data-aos="fade-up"
+         class="py-24 px-6">
 
-    <!-- MAIN LINE -->
-    <div class="h-[2px] w-full rounded-full
-                bg-gradient-to-r
-                from-transparent
-                via-green-400
-                to-transparent">
+  <div class="text-center mb-14">
+
+    <h2 class="text-3xl md:text-5xl font-bold mb-4">
+      Hasil Trade Selama 10 Minggu
+    </h2>
+
+    <p class="text-gray-400 text-lg">
+      Dokumentasi hasil trading member
+    </p>
+
+  </div>
+
+  <div class="slider-container">
+
+
+    <div id="hasilSlider"
+         class="slider-track">
+
+      <!-- SLIDE 1 -->
+      <div class="slide active">
+
+        <div class="slide-item">
+          <img src="./images/trade1.png">
+        </div>
+
+        <div class="slide-item">
+          <img src="./images/trade2.png">
+        </div>
+
+        <div class="slide-item">
+          <img src="./images/trade3.png">
+        </div>
+
+      </div>
+
+      <!-- SLIDE 2 -->
+      <div class="slide">
+
+        <div class="slide-item">
+          <img src="./images/trade4.png">
+        </div>
+
+        <div class="slide-item">
+          <img src="./images/trade5.png">
+        </div>
+
+        <div class="slide-item">
+          <img src="./images/trade6.png">
+        </div>
+
+      </div>
+
+      <!-- SLIDE 3 -->
+      <div class="slide">
+
+        <div class="slide-item">
+          <img src="./images/trade7.png">
+        </div>
+
+        <div class="slide-item">
+          <img src="./images/trade8.png">
+        </div>
+
+        <div class="slide-item">
+          <img src="./images/trade9.png">
+        </div>
+
+      </div>
+
+      <!-- SLIDE 4 -->
+      <div class="slide">
+
+        <div class="slide-item">
+          <img src="./images/trade10.png">
+        </div>
+
+        <div class="slide-item">
+          <img src="./images/trade11.png">
+        </div>
+
+        <div class="slide-item">
+          <img src="./images/trade12.png">
+        </div>
+
+      </div>
+
     </div>
 
-    <!-- GLOW EFFECT -->
-    <div class="absolute inset-0 blur-md opacity-70
-                h-[2px] w-full rounded-full
-                bg-gradient-to-r
-                from-transparent
-                via-green-500
-                to-transparent">
-    </div>
+  </div>
+
+  <!-- CONTROLS -->
+<div class="slider-controls">
+
+  <div class="slider-dots" id="hasilDots"></div>
+
+  <div class="slider-arrows">
+
+    <button class="arrow-btn"
+            onclick="prevSlide('hasilSlider')">
+      ←
+    </button>
+
+    <button class="arrow-btn"
+            onclick="nextSlide('hasilSlider')">
+      →
+    </button>
 
   </div>
 
 </div>
 
+</section>
 
-<!-- OFFER + PROGRAM -->
-<section data-aos="fade-up"
-         id="pilihan-program"
-         class="py-20 px-6">
+<!-- SCRIPT -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-  <h2 class="text-2xl md:text-3xl font-bold text-center mb-14">
-    Yang Kamu Dapatkan
-  </h2>
+<script>
 
-  <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+AOS.init({
+  duration: 1000,
+  once: true,
+});
+
+const sliders = {};
+
+function setupSlider(id, dotsId) {
+
+  const slider = document.getElementById(id);
+  const slides = slider.querySelectorAll(".slide");
+  const dotsContainer = document.getElementById(dotsId);
+
+  let current = 0;
+
+  // CREATE DOTS
+  slides.forEach((_, index) => {
+
+    const dot = document.createElement("div");
+
+    dot.classList.add("slider-dot");
+
+    if(index === 0) {
+      dot.classList.add("active");
+    }
+
+    dot.addEventListener("click", () => {
+
+      current = index;
+
+      showSlide(current);
+
+    });
+
+    dotsContainer.appendChild(dot);
+
+  });
+
+  const dots = dotsContainer.querySelectorAll(".slider-dot");
+
+  function showSlide(index) {
+
+    slides.forEach(slide => {
+      slide.classList.remove("active");
+    });
+
+    dots.forEach(dot => {
+      dot.classList.remove("active");
+    });
+
+    slides[index].classList.add("active");
+    dots[index].classList.add("active");
+
+  }
+
+  sliders[id] = {
+
+    next() {
+
+      current = (current + 1) % slides.length;
+
+      showSlide(current);
+
+    },
+
+    prev() {
+
+      current = (current - 1 + slides.length) % slides.length;
+
+      showSlide(current);
+
+    }
+
+  };
+
+  setInterval(() => {
+
+    sliders[id].next();
+
+  }, 3500);
+
+}
+
+function nextSlide(id) {
+
+  sliders[id].next();
+
+}
+
+function prevSlide(id) {
+
+  sliders[id].prev();
+
+}
+
+setupSlider("testimonialSlider", "testimonialDots");
+setupSlider("hasilSlider", "hasilDots");
+
+function toggleMenu() {
+
+  document
+    .getElementById("mobileMenu")
+    .classList
+    .toggle("active");
+
+}
+
+</script>
+
+<!-- LINE -->
+<div class="green-line">
+  <div class="line"></div>
+  <div class="glow"></div>
+</div>
+
+<!-- FEATURED GRID -->
+<section id="program"
+         data-aos="fade-up"
+         class="py-24 px-6">
+
+  <div class="text-center mb-16">
+
+    <h2 class="text-3xl md:text-5xl font-bold mb-5">
+      Pilihan Program
+    </h2>
+
+    <p class="text-gray-400">
+      Sistem trading & bisnis digital Kebunsaham
+    </p>
+
+  </div>
+
+  <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
 
     <!-- VIP GOLD -->
-    <div class="bg-white/5 border border-white/10 rounded-2xl
-                p-8 flex flex-col justify-between
-                backdrop-blur-md
-                hover:border-green-400/30
-                hover:shadow-[0_0_40px_rgba(34,197,94,0.15)]
-                transition duration-300">
+    <div class="program-card">
 
-      <div>
+      <h3 class="text-2xl font-bold mb-8">
+        VIP GOLD
+      </h3>
 
-        <h3 class="text-2xl font-bold text-center mb-8">
-          VIP GOLD
-        </h3>
+      <ul class="space-y-4 text-gray-300 mb-10">
+        <li>• Sinyal Gold Harian</li>
+        <li>• Setup Entry Lengkap</li>
+        <li>• Live Market Update</li>
+        <li>• Risk Management</li>
+      </ul>
 
-        <ul class="text-gray-300 text-left space-y-5">
+      <a href="https://wa.me/6281330536588"
+         class="main-btn w-full text-center">
 
-          <li class="pl-6 relative leading-relaxed">
-            <span class="absolute left-0 text-green-400">•</span>
-            Sinyal Gold Harian
-          </li>
+        Hubungi
 
-          <li class="pl-6 relative leading-relaxed">
-            <span class="absolute left-0 text-green-400">•</span>
-            Setup entry, SL, TP jelas
-          </li>
-
-          <li class="pl-6 relative leading-relaxed">
-            <span class="absolute left-0 text-green-400">•</span>
-            Update Market Live
-          </li>
-
-        </ul>
-
-      </div>
-
-      <!-- BUTTON -->
-      <div class="flex justify-center mt-10">
-
-        <a href="https://wa.me/6281330536588"
-           target="_blank"
-           class="bg-gradient-to-r from-green-500 to-emerald-400
-                  hover:scale-105
-                  hover:shadow-lg
-                  hover:shadow-green-500/30
-                  transition
-                  px-8 py-3 rounded-xl
-                  font-semibold">
-
-          Hubungi
-
-        </a>
-
-      </div>
+      </a>
 
     </div>
 
-    <!-- VIPC -->
-    <div class="bg-white/5 border border-white/10 rounded-2xl
-                p-8 flex flex-col justify-between
-                backdrop-blur-md
-                hover:border-green-400/30
-                hover:shadow-[0_0_40px_rgba(34,197,94,0.15)]
-                transition duration-300">
+    <!-- VIP CRYPTO -->
+    <div class="program-card">
 
-      <div>
+      <h3 class="text-2xl font-bold mb-8">
+        VIP Crypto
+      </h3>
 
-        <h3 class="text-2xl font-bold text-center mb-8">
-          VIPC (Pasif Income)
-        </h3>
+      <ul class="space-y-4 text-gray-300 mb-10">
+        <li>• Auto Trade Crypto</li>
+        <li>• Passive Income</li>
+        <li>• Ternak Crypto</li>
+        <li>• Sistem Algoritma</li>
+      </ul>
 
-        <ul class="text-gray-300 text-left space-y-5">
+      <a href="https://wa.me/6281330536588"
+         class="main-btn w-full text-center">
 
-          <li class="pl-6 relative leading-relaxed">
-            <span class="absolute left-0 text-green-400">•</span>
-            Dana Pensiun
-          </li>
+        Hubungi
 
-          <li class="pl-6 relative leading-relaxed">
-            <span class="absolute left-0 text-green-400">•</span>
-            Cuan otomatis pakai algoritma
-          </li>
-
-          <li class="pl-6 relative leading-relaxed">
-            <span class="absolute left-0 text-green-400">•</span>
-            Tabungan masa depan
-          </li>
-
-          <li class="pl-6 relative leading-relaxed">
-            <span class="absolute left-0 text-green-400">•</span>
-            Pendidikan Anak
-          </li>
-
-        </ul>
-
-      </div>
-
-      <!-- BUTTON -->
-      <div class="flex justify-center mt-10">
-
-        <a href="https://wa.me/6281330536588"
-           target="_blank"
-           class="bg-gradient-to-r from-green-500 to-emerald-400
-                  hover:scale-105
-                  hover:shadow-lg
-                  hover:shadow-green-500/30
-                  transition
-                  px-8 py-3 rounded-xl
-                  font-semibold">
-
-          Hubungi
-
-        </a>
-
-      </div>
+      </a>
 
     </div>
 
     <!-- PRO TRADER -->
-    <div class="bg-white/5 border border-white/10 rounded-2xl
-                p-8 flex flex-col justify-between
-                backdrop-blur-md
-                hover:border-green-400/30
-                hover:shadow-[0_0_40px_rgba(34,197,94,0.15)]
-                transition duration-300">
+    <div class="program-card">
 
-      <div>
+      <h3 class="text-2xl font-bold mb-8">
+        PRO Trader
+      </h3>
 
-        <h3 class="text-2xl font-bold text-center mb-8">
-          PRO Trader
-        </h3>
+      <ul class="space-y-4 text-gray-300 mb-10">
+        <li>• Private Mentoring</li>
+        <li>• Psychology Trading</li>
+        <li>• Teknik Entry Exit</li>
+        <li>• Full Guidance</li>
+      </ul>
 
-        <ul class="text-gray-300 text-left space-y-5">
+      <a href="https://wa.me/6281330536588"
+         class="main-btn w-full text-center">
 
-          <li class="pl-6 relative leading-relaxed">
-            <span class="absolute left-0 text-green-400">•</span>
-            Private Mentoring
-          </li>
+        Hubungi
 
-          <li class="pl-6 relative leading-relaxed">
-            <span class="absolute left-0 text-green-400">•</span>
-            Teknik entry & exit
-          </li>
+      </a>
 
-          <li class="pl-6 relative leading-relaxed">
-            <span class="absolute left-0 text-green-400">•</span>
-            Mindset & psychology
-          </li>
+    </div>
 
-          <li class="pl-6 relative leading-relaxed">
-            <span class="absolute left-0 text-green-400">•</span>
-            Direct mentoring
-          </li>
+    <!-- AFFILIATE -->
+    <div class="program-card">
 
-        </ul>
+      <h3 class="text-2xl font-bold mb-8">
+        Affiliate
+      </h3>
+
+      <ul class="space-y-4 text-gray-300 mb-10">
+        <li>• Membangun bisnis VIP Gold</li>
+        <li>• Ternak Crypto</li>
+        <li>• Berpotensi Passive Income</li>
+        <li>• Target 2 Milliar / bulan</li>
+      </ul>
+
+      <a href="https://wa.me/6281330536588"
+         class="main-btn w-full text-center">
+
+        Hubungi
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- LINE -->
+<div class="green-line">
+  <div class="line"></div>
+  <div class="glow"></div>
+</div>
+
+<!-- WHY -->
+<section data-aos="fade-up"
+         class="py-20 px-6">
+
+  <div class="max-w-6xl mx-auto text-center">
+
+    <h2 class="text-3xl md:text-5xl font-bold mb-5">
+      Kenapa Harus Kebunsaham?
+    </h2>
+
+    <p class="text-gray-400 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+      Kebunsaham sudah membantu ribuan member berkembang melalui
+      live market update, daily informasi market, dan sistem trading
+      yang terus berkembang sejak 2023.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-5 mt-12">
+
+      <!-- CARD 1 -->
+      <div class="relative overflow-hidden
+                  rounded-3xl
+                  border border-white/10
+                  bg-white/[0.03]
+                  backdrop-blur-xl
+                  px-8 py-10
+                  hover:border-green-400/30
+                  hover:-translate-y-1
+                  transition duration-300">
+
+        <!-- GLOW -->
+        <div class="absolute inset-0
+                    bg-gradient-to-b
+                    from-green-500/10
+                    to-transparent
+                    opacity-60">
+        </div>
+
+        <div class="relative z-10">
+
+          <h3 class="text-4xl md:text-5xl font-bold text-green-400 mb-5">
+            120x
+          </h3>
+
+          <p class="text-gray-300 leading-relaxed text-sm md:text-base">
+            Total profit berkembang lebih dari
+            <span class="text-white font-semibold">
+              120x lipat
+            </span>
+            bersama member sejak 2023.
+          </p>
+
+        </div>
 
       </div>
 
-      <!-- BUTTON -->
-      <div class="flex justify-center mt-10">
+      <!-- CARD 2 -->
+      <div class="relative overflow-hidden
+                  rounded-3xl
+                  border border-white/10
+                  bg-white/[0.03]
+                  backdrop-blur-xl
+                  px-8 py-10
+                  hover:border-green-400/30
+                  hover:-translate-y-1
+                  transition duration-300">
 
-        <a href="http://wa.me/6281330536588?text=Join%20Pelatihan%20Lengkap"
-           target="_blank"
-           class="bg-gradient-to-r from-green-500 to-emerald-400
-                  hover:scale-105
-                  hover:shadow-lg
-                  hover:shadow-green-500/30
-                  transition
-                  px-8 py-3 rounded-xl
-                  font-semibold">
+        <!-- GLOW -->
+        <div class="absolute inset-0
+                    bg-gradient-to-b
+                    from-green-500/10
+                    to-transparent
+                    opacity-60">
+        </div>
 
-          Hubungi
+        <div class="relative z-10">
 
-        </a>
+          <h3 class="text-4xl md:text-5xl font-bold text-green-400 mb-5">
+            32K+
+          </h3>
+
+          <p class="text-gray-300 leading-relaxed text-sm md:text-base">
+            Komunitas aktif dengan lebih dari
+            <span class="text-white font-semibold">
+              32.000 member
+            </span>
+            dan ribuan testimoni.
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="relative overflow-hidden
+                  rounded-3xl
+                  border border-white/10
+                  bg-white/[0.03]
+                  backdrop-blur-xl
+                  px-8 py-10
+                  hover:border-green-400/30
+                  hover:-translate-y-1
+                  transition duration-300">
+
+        <!-- GLOW -->
+        <div class="absolute inset-0
+                    bg-gradient-to-b
+                    from-green-500/10
+                    to-transparent
+                    opacity-60">
+        </div>
+
+        <div class="relative z-10">
+
+          <h3 class="text-4xl md:text-5xl font-bold text-green-400 mb-5">
+            LIVE
+          </h3>
+
+          <p class="text-gray-300 leading-relaxed text-sm md:text-base">
+            Live market update setiap weekday
+            dan daily informasi market setiap hari.
+          </p>
+
+        </div>
 
       </div>
 
     </div>
+
+  </div>
+
+</section>
+
+<!-- LINE -->
+<div class="green-line">
+  <div class="line"></div>
+  <div class="glow"></div>
+</div>
+
+<!-- CLOSING CTA -->
+<section data-aos="fade-up"
+         class="py-32 px-6 text-center">
+
+  <div class="max-w-4xl mx-auto">
+
+    <h2 class="text-4xl md:text-6xl font-bold leading-tight mb-8">
+
+      Kamu Bisa Terus
+      Menonton Orang Lain Profit,
+
+      <span class="bg-gradient-to-r from-green-400 to-emerald-300 text-transparent bg-clip-text">
+
+        Atau Mulai Bangun
+        Sistem Profitmu Sendiri.
+
+      </span>
+
+    </h2>
+
+    <p class="text-gray-400 text-xl leading-relaxed mb-12">
+
+      Kebanyakan orang menunda terlalu lama.
+      Padahal market tetap berjalan setiap hari.
+      Pilih apakah kamu ingin jadi penonton,
+      atau ikut membangun hasil mulai sekarang.
+
+    </p>
+
+    <a href="#program"
+      class="main-btn text-xl">
+
+      Gabung Sekarang
+
+    </a>
 
   </div>
 
 </section>
 
 <!-- DISCLAIMER -->
-<section class="py-16 px-6 text-center">
+<section class="pb-16 px-6 text-center">
 
   <p class="text-gray-500 text-sm max-w-3xl mx-auto leading-relaxed">
+
     ⚠️ Disclaimer:
-    Semua keputusan anda adalah tanggung jawab anda sendiri.
-    Tidak semua cocok di bidang usaha ini.
-    Belajar dan beradaptasi.
+    Semua keputusan trading adalah tanggung jawab masing-masing.
+    Trading memiliki risiko. Gunakan money management dengan baik.
+
   </p>
 
 </section>
-
-<!-- AOS SCRIPT -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-<script>
-  AOS.init({
-    duration: 1000,
-    once: true,
-  });
-</script>
 
 </body>
 </html>
