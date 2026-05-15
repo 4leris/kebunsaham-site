@@ -161,86 +161,25 @@ img {
 
 @media (max-width: 900px) {
   .slide {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
   }
 }
 
 @media (max-width: 640px) {
+  .slider-container {
+    max-width: 100%;
+  }
+
   .slide {
     grid-template-columns: 1fr;
-  }
-}
-
-/* =========================
-   LAPTOP FIX
-========================= */
-
-@media (max-width: 1600px) {
-
-  .slider-track {
-    height: 460px;
+    gap: 0;
   }
 
   .slide-item {
-    max-width: 260px;
-    height: 460px;
+    max-width: 92%;
+    margin: auto;
   }
-
-}
-
-/* =========================
-   TABLET
-========================= */
-
-@media (max-width: 1024px) {
-
-  .slider-track {
-    height: 420px;
-  }
-
-  .slide-item {
-    max-width: 220px;
-    height: 420px;
-  }
-
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
-
-  .slider-track {
-    height: 420px;
-  }
-
-  .slide {
-    gap: 12px;
-  }
-
-  .slide-item {
-    max-width: 48%;
-    height: 420px;
-  }
-
-}
-
-/* =========================
-   SMALL MOBILE
-========================= */
-
-@media (max-width: 540px) {
-
-  .slider-track {
-    height: 400px;
-  }
-
-  .slide-item {
-    max-width: 100%;
-    height: 400px;
-  }
-
 }
 
 /* =========================
