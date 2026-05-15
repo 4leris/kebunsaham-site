@@ -15,32 +15,6 @@
 </head>
 
 <body class="text-white font-sans bg-black relative overflow-x-hidden">
-  
-<!-- HAMBURGER MENU -->
-<div class="mobile-menu-btn" onclick="toggleMenu()">
-
-  <span></span>
-  <span></span>
-  <span></span>
-
-</div>
-
-<!-- MENU CONTENT -->
-<div class="mobile-menu" id="mobileMenu">
-
-  <a href="#testimoni">
-    Testimoni
-  </a>
-
-  <a href="#hasiltrade">
-    Hasil Trade
-  </a>
-
-  <a href="#program">
-    Pilihan Program
-  </a>
-
-</div>
 
 <style>
 
@@ -50,6 +24,9 @@
 
 html,
 body {
+
+  margin: 0;
+  padding: 0;
 
   overflow-x: hidden;
 
@@ -117,7 +94,7 @@ img {
 
 .slider-container {
   position: relative;
-  max-width: 1200px;
+  max-width: 900px;
   margin: auto;
   overflow: hidden;
 }
@@ -125,7 +102,6 @@ img {
 .slider-track {
   position: relative;
   width: 100%;
-  min-height: 520px;
 }
 
 .slide {
@@ -136,14 +112,14 @@ img {
   transition: opacity .8s ease;
 
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 
   pointer-events: none;
 }
 
 .slide.active {
+  position: relative;
   opacity: 1;
   pointer-events: auto;
 }
@@ -179,11 +155,20 @@ img {
 .slide-item:hover img {
 
   border-color: rgba(74,222,128,.4);
-
   box-shadow: 0 0 40px rgba(34,197,94,.15);
 
-  transform: translateY(-4px);
+}
 
+@media (max-width: 900px) {
+  .slide {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .slide {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* =========================
@@ -480,144 +465,6 @@ img {
 }
 
 /* =========================
-   MOBILE MENU
-========================= */
-
-.mobile-menu-btn {
-
-  position: fixed;
-
-  top: 16px;
-  left: 16px;
-
-  width: 50px;
-  height: 50px;
-
-  border-radius: 16px;
-
-  background: rgba(255,255,255,.05);
-
-  border: 1px solid rgba(255,255,255,.08);
-
-  backdrop-filter: blur(12px);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  gap: 5px;
-
-  cursor: pointer;
-
-  z-index: 999;
-
-  transition:
-    background .25s ease,
-    border-color .25s ease,
-    transform .25s ease;
-
-}
-
-.mobile-menu-btn:hover {
-
-  background: rgba(255,255,255,.08);
-
-  border-color: rgba(34,197,94,.35);
-
-}
-
-.mobile-menu-btn span {
-
-  width: 22px;
-  height: 2px;
-
-  border-radius: 999px;
-
-  background: white;
-
-}
-
-.mobile-menu {
-
-  position: fixed;
-
-  top: 78px;
-  left: 16px;
-
-  width: calc(100vw - 32px);
-  max-width: 260px;
-
-  background: rgba(0,0,0,.88);
-
-  border: 1px solid rgba(255,255,255,.08);
-
-  backdrop-filter: blur(20px);
-
-  border-radius: 22px;
-
-  padding: 16px;
-
-  z-index: 999;
-
-  opacity: 0;
-  visibility: hidden;
-
-  transform: translateY(-10px);
-
-  transition:
-    opacity .25s ease,
-    transform .25s ease,
-    visibility .25s ease;
-
-}
-
-.mobile-menu.active {
-
-  opacity: 1;
-
-  visibility: visible;
-
-  transform: translateY(0);
-
-}
-
-.mobile-menu a {
-
-  display: block;
-
-  padding: 13px 14px;
-
-  border-radius: 14px;
-
-  color: white;
-
-  text-decoration: none;
-
-  font-size: 15px;
-  font-weight: 500;
-
-  transition:
-    background .25s ease,
-    color .25s ease;
-
-  margin-bottom: 6px;
-
-}
-
-.mobile-menu a:last-child {
-  margin-bottom: 0;
-}
-
-.mobile-menu a:hover {
-
-  background: rgba(34,197,94,.12);
-
-  color: #4ade80;
-
-}
-
-/* =========================
    SMALL MOBILE
 ========================= */
 
@@ -755,13 +602,13 @@ img {
 </div>
 
 <!-- NAVBAR -->
-<nav class="sticky top-0 z-50
+<nav class="fixed top-0 left-0 z-50 w-full
             flex items-center justify-between
             gap-4
             px-4 md:px-12
             py-3 md:py-4
+            bg-black/50
             backdrop-blur-xl
-            bg-black/40
             border-b border-white/5">
 
   <a href="#">
@@ -769,7 +616,26 @@ img {
          class="h-12 sm:h-14 md:h-20 object-contain">
   </a>
 
-  <div class="flex items-center gap-2 sm:gap-3 md:gap-5">
+  <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+
+  <a href="#testimoni"
+     class="text-gray-300 hover:text-white transition">
+    Testimoni
+  </a>
+
+  <a href="#hasiltrade"
+     class="text-gray-300 hover:text-white transition">
+    Hasil Trade
+  </a>
+
+  <a href="#program"
+     class="text-gray-300 hover:text-white transition">
+    Program
+  </a>
+
+</div>
+
+<div class="flex items-center gap-2 sm:gap-3 md:gap-5">
 
     <a href="https://wa.me/6281330536588" target="_blank">
       <img src="./images/whatsapp.jpg"
@@ -815,8 +681,9 @@ img {
 </a>
 
 <!-- HERO -->
-<section data-aos="fade-up"
-         class="text-center py-20 md:py-28 px-5 md:px-6">
+<section
+  data-aos="fade-up"
+  class="text-center pt-32 md:pt-40 pb-20 md:pb-28 px-5 md:px-6">
 
   <div class="max-w-5xl mx-auto">
 
@@ -1235,14 +1102,6 @@ function prevSlide(id) {
 setupSlider("testimonialSlider", "testimonialDots");
 setupSlider("hasilSlider", "hasilDots");
 
-function toggleMenu() {
-
-  document
-    .getElementById("mobileMenu")
-    .classList
-    .toggle("active");
-
-}
 </script>
 
 <!-- LINE -->
