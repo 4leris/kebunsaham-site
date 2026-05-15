@@ -48,6 +48,21 @@
    GLOBAL
 ========================= */
 
+html,
+body {
+
+  overflow-x: hidden;
+
+}
+
+img {
+
+  max-width: 100%;
+
+  display: block;
+
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -102,7 +117,7 @@
 
 .slider-container {
   position: relative;
-  max-width: 980px;
+  max-width: 1200px;
   margin: auto;
   overflow: hidden;
 }
@@ -110,7 +125,7 @@
 .slider-track {
   position: relative;
   width: 100%;
-  height: 520px;
+  min-height: 520px;
 }
 
 .slide {
@@ -120,9 +135,9 @@
   opacity: 0;
   transition: opacity .8s ease;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
   gap: 20px;
 
   pointer-events: none;
@@ -134,26 +149,41 @@
 }
 
 .slide-item {
-  height: 520px;
-}
+  width: 100%;
+  aspect-ratio: 9 / 16;
 
-@media (max-width: 540px) {
-
-  .slide-item {
-    height: 380px;
-  }
-
+  transition: .4s ease;
 }
 
 .slide-item img {
+
   width: 100%;
   height: 100%;
+
+  display: block;
+
   object-fit: cover;
 
-  border-radius: 24px;
+  border-radius: 20px;
+
   border: 1px solid rgba(255,255,255,.08);
 
   box-shadow: 0 20px 50px rgba(0,0,0,.45);
+
+  transition: .4s ease;
+
+  will-change: transform;
+
+}
+
+.slide-item:hover img {
+
+  border-color: rgba(74,222,128,.4);
+
+  box-shadow: 0 0 40px rgba(34,197,94,.15);
+
+  transform: translateY(-4px);
+
 }
 
 /* =========================
@@ -331,31 +361,35 @@
 /* =========================
    FEATURED GRID
 ========================= */
-
 .program-card {
+
+  width: 100%;
 
   background: rgba(255,255,255,.04);
 
   border: 1px solid rgba(255,255,255,.08);
 
-  border-radius: 28px;
+  border-radius: 24px;
 
-  padding: 36px;
+  padding: 28px;
 
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(14px);
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  min-height: 520px;
+  gap: 24px;
 
-  transition: .4s ease;
+  transition: .35s ease;
+
+  will-change: transform;
+
 }
 
 .program-card:hover {
 
-  transform: translateY(-8px);
+  transform: translateY(-4px);
 
   border-color: rgba(74,222,128,.4);
 
@@ -363,12 +397,14 @@
 
 }
 
-.program-content {
-  flex: 1;
-}
+@media (min-width: 768px) {
 
-.program-button {
-  margin-top: 32px;
+  .program-card {
+
+    padding: 36px;
+
+  }
+
 }
 
 /* =========================
@@ -377,24 +413,69 @@
 
 .main-btn {
 
-  display: inline-block;
+  display: inline-flex;
 
-  background: linear-gradient(to right,#22c55e,#34d399);
+  align-items: center;
+  justify-content: center;
 
-  padding: 16px 34px;
+  width: 100%;
+  max-width: 320px;
+
+  padding: 15px 24px;
 
   border-radius: 18px;
 
-  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    #22c55e,
+    #34d399
+  );
 
-  transition: .3s;
+  font-weight: 700;
+
+  font-size: 15px;
+  line-height: 1.2;
+
+  text-align: center;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    opacity .25s ease;
+
 }
 
+/* DESKTOP HOVER */
 .main-btn:hover {
 
-  transform: scale(1.05);
+  transform: translateY(-2px);
 
   box-shadow: 0 0 30px rgba(34,197,94,.35);
+
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .main-btn {
+
+    max-width: 100%;
+
+    width: 100%;
+
+    padding: 14px 20px;
+
+    font-size: 14px;
+
+    border-radius: 16px;
+
+  }
+
+  .main-btn:hover {
+
+    transform: none;
+
+  }
 
 }
 
@@ -406,13 +487,13 @@
 
   position: fixed;
 
-  top: 24px;
-  left: 24px;
+  top: 16px;
+  left: 16px;
 
-  width: 56px;
-  height: 56px;
+  width: 50px;
+  height: 50px;
 
-  border-radius: 18px;
+  border-radius: 16px;
 
   background: rgba(255,255,255,.05);
 
@@ -425,13 +506,16 @@
   justify-content: center;
   align-items: center;
 
-  gap: 6px;
+  gap: 5px;
 
   cursor: pointer;
 
   z-index: 999;
 
-  transition: .3s ease;
+  transition:
+    background .25s ease,
+    border-color .25s ease,
+    transform .25s ease;
 
 }
 
@@ -445,7 +529,7 @@
 
 .mobile-menu-btn span {
 
-  width: 24px;
+  width: 22px;
   height: 2px;
 
   border-radius: 999px;
@@ -458,30 +542,33 @@
 
   position: fixed;
 
-  top: 95px;
-  left: 24px;
+  top: 78px;
+  left: 16px;
 
-  width: 240px;
+  width: calc(100vw - 32px);
+  max-width: 260px;
 
-  background: rgba(0,0,0,.85);
+  background: rgba(0,0,0,.88);
 
   border: 1px solid rgba(255,255,255,.08);
 
   backdrop-filter: blur(20px);
 
-  border-radius: 24px;
+  border-radius: 22px;
 
-  padding: 20px;
+  padding: 16px;
 
   z-index: 999;
 
   opacity: 0;
-
   visibility: hidden;
 
   transform: translateY(-10px);
 
-  transition: .3s ease;
+  transition:
+    opacity .25s ease,
+    transform .25s ease,
+    visibility .25s ease;
 
 }
 
@@ -499,7 +586,7 @@
 
   display: block;
 
-  padding: 14px 16px;
+  padding: 13px 14px;
 
   border-radius: 14px;
 
@@ -507,10 +594,19 @@
 
   text-decoration: none;
 
-  transition: .25s ease;
+  font-size: 15px;
+  font-weight: 500;
 
-  margin-bottom: 8px;
+  transition:
+    background .25s ease,
+    color .25s ease;
 
+  margin-bottom: 6px;
+
+}
+
+.mobile-menu a:last-child {
+  margin-bottom: 0;
 }
 
 .mobile-menu a:hover {
@@ -521,61 +617,178 @@
 
 }
 
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+  .mobile-menu-btn {
+
+    top: 12px;
+    left: 12px;
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 14px;
+
+  }
+
+  .mobile-menu {
+
+    top: 68px;
+    left: 12px;
+
+    width: calc(100vw - 24px);
+
+    border-radius: 18px;
+
+    padding: 14px;
+
+  }
+
+  .mobile-menu a {
+
+    padding: 12px;
+
+    font-size: 14px;
+
+  }
+
+}
 </style>
 
 <!-- BACKGROUND -->
-<div class="fixed inset-0 -z-10">
+<div class="fixed inset-0 -z-10 overflow-hidden">
 
+  <!-- BASE -->
   <div class="absolute inset-0 bg-black"></div>
 
-  <div class="absolute top-[-150px] left-1/2 -translate-x-1/2
-              w-[1000px] h-[900px]
-              bg-green-500 opacity-20 blur-[220px]"></div>
+  <!-- MAIN TOP GLOW -->
+  <div class="absolute
+              top-[-12%]
+              left-1/2
+              -translate-x-1/2
 
-  <div class="absolute bottom-0 right-0
-              w-[500px] h-[500px]
-              bg-emerald-400 opacity-5 blur-[200px]"></div>
+              w-[90vw]
+              max-w-[1000px]
 
-  <div class="absolute top-[35%] left-[-120px]
-              w-[350px] h-[350px]
-              bg-emerald-500 opacity-10 blur-[160px] rounded-full"></div>
+              h-[90vw]
+              max-h-[900px]
 
-  <div class="absolute top-[55%] right-[-100px]
-              w-[300px] h-[300px]
-              bg-green-400 opacity-10 blur-[150px] rounded-full"></div>
+              bg-green-500
+              opacity-20
 
-  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black"></div>
+              blur-[120px]
+              md:blur-[220px]">
+  </div>
+
+  <!-- RIGHT BOTTOM GLOW -->
+  <div class="absolute
+              bottom-[-10%]
+              right-[-10%]
+
+              w-[45vw]
+              max-w-[500px]
+
+              h-[45vw]
+              max-h-[500px]
+
+              bg-emerald-400
+              opacity-[0.06]
+
+              blur-[90px]
+              md:blur-[200px]
+
+              rounded-full">
+  </div>
+
+  <!-- LEFT MID GLOW -->
+  <div class="absolute
+              top-[35%]
+              left-[-18%]
+
+              w-[38vw]
+              max-w-[350px]
+
+              h-[38vw]
+              max-h-[350px]
+
+              bg-emerald-500
+              opacity-[0.08]
+
+              blur-[70px]
+              md:blur-[160px]
+
+              rounded-full">
+  </div>
+
+  <!-- RIGHT MID GLOW -->
+  <div class="absolute
+              top-[58%]
+              right-[-15%]
+
+              w-[34vw]
+              max-w-[300px]
+
+              h-[34vw]
+              max-h-[300px]
+
+              bg-green-400
+              opacity-[0.08]
+
+              blur-[60px]
+              md:blur-[150px]
+
+              rounded-full">
+  </div>
+
+  <!-- DARK OVERLAY -->
+  <div class="absolute inset-0
+              bg-gradient-to-b
+              from-transparent
+              via-black/40
+              to-black">
+  </div>
 
 </div>
 
 <!-- NAVBAR -->
-<nav class="sticky top-0 z-50 flex justify-between items-center px-6 md:px-16 py-4 backdrop-blur-md bg-black/30">
+<nav class="sticky top-0 z-50
+            flex items-center justify-between
+            gap-4
+            px-4 md:px-12
+            py-3 md:py-4
+            backdrop-blur-xl
+            bg-black/40
+            border-b border-white/5">
 
   <a href="#">
     <img src="./images/logo.jpg.png"
-         class="h-16 md:h-20 object-contain">
+         class="h-12 sm:h-14 md:h-20 object-contain">
   </a>
 
-  <div class="flex items-center gap-4 md:gap-6">
+  <div class="flex items-center gap-2 sm:gap-3 md:gap-5">
 
     <a href="https://wa.me/6281330536588" target="_blank">
       <img src="./images/whatsapp.jpg"
-           class="w-12 md:w-16 object-contain hover:scale-110 transition">
+           class="w-9 sm:w-10 md:w-16 object-contain hover:scale-110 transition">
     </a>
 
     <a href="https://www.tiktok.com/@kebunsaham" target="_blank">
       <img src="./images/tiktok.jpg"
-           class="w-12 md:w-16 object-contain hover:scale-110 transition">
+           class="w-9 sm:w-10 md:w-16 object-contain hover:scale-110 transition">
     </a>
 
     <a href="https://www.youtube.com/@kebunsaham" target="_blank">
       <img src="./images/youtube.jpg"
-           class="w-12 md:w-16 object-contain hover:scale-110 transition">
+           class="w-9 sm:w-10 md:w-16 object-contain hover:scale-110 transition">
     </a>
 
     <a href="https://instagram.com/kebunsaham" target="_blank">
       <img src="./images/instagram.jpg"
-           class="w-12 md:w-16 object-contain hover:scale-110 transition">
+           class="w-9 sm:w-10 md:w-16 object-contain hover:scale-110 transition">
     </a>
 
   </div>
@@ -585,16 +798,17 @@
 <!-- FLOATING BUTTON -->
 <a href="https://t.me/kebunsahamgrup"
    target="_blank"
-   class="fixed bottom-6 right-6 z-50">
+   class="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50">
 
   <div class="bg-gradient-to-r from-blue-500 to-black
-              px-5 rounded-2xl
+              px-3 sm:px-4
+              rounded-2xl
               shadow-2xl
               hover:scale-105
               transition">
 
     <img src="./images/Gabung.png"
-         class="w-64 md:w-80 object-contain">
+         class="w-40 sm:w-48 md:w-72 object-contain">
 
   </div>
 
@@ -602,11 +816,11 @@
 
 <!-- HERO -->
 <section data-aos="fade-up"
-         class="text-center py-28 px-6">
+         class="text-center py-20 md:py-28 px-5 md:px-6">
 
   <div class="max-w-5xl mx-auto">
 
-    <h1 class="text-4xl md:text-7xl font-bold leading-tight mb-8">
+    <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-6 md:mb-8">
 
       Bangun Kebebasan Finansial Dari
 
@@ -619,15 +833,15 @@
 
     </h1>
 
-    <p class="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
+    <p class="text-gray-400 text-base md:text-xl max-w-3xl mx-auto leading-relaxed mb-8 md:mb-10">
 
       Join komunitas trading terbesar Kebunsaham.
-      Dapatkan sinyal, analisa market, dan sistem auto-trade
+      Dapatkan signal, analisa market, dan sistem auto-trade
       untuk membantu profit lebih konsisten.
 
     </p>
 
-    <div class="flex flex-col md:flex-row justify-center gap-4">
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
 
       <a href="#program"
          class="main-btn">
@@ -638,12 +852,13 @@
 
       <a href="https://t.me/kebunsahamgrup"
          target="_blank"
-         class="border border-white/10
+         class="w-full sm:w-auto
+                border border-white/10
                 bg-white/5
                 hover:bg-white/10
                 transition
-                px-10 py-4 rounded-2xl
-                font-semibold">
+                px-8 py-4 rounded-2xl
+                font-semibold text-center">
 
         Lihat Komunitas
 
@@ -668,7 +883,7 @@
 
   <div class="text-center mb-14">
 
-    <h2 class="text-3xl md:text-5xl font-bold mb-4">
+    <h2 class="text-2xl md:text-4xl font-bold mb-4">
       32.000+ Member Aktif
     </h2>
 
@@ -776,8 +991,6 @@
 
 </div>
 
-</section>
-
 <!-- TESTIMONIAL GROUP -->
 <section data-aos="fade-up"
          class="pt-2 pb-20 px-6 text-center">
@@ -808,7 +1021,7 @@
 
   <div class="text-center mb-14">
 
-    <h2 class="text-3xl md:text-5xl font-bold mb-4">
+    <h2 class="text-2xl md:text-4xl font-bold mb-4">
       Hasil Trade Selama 10 Minggu
     </h2>
 
@@ -1045,7 +1258,7 @@ function toggleMenu() {
 
   <div class="text-center mb-16">
 
-    <h2 class="text-3xl md:text-5xl font-bold mb-5">
+    <h2 class="text-2xl md:text-4xl font-bold mb-5">
       Pilihan Program
     </h2>
 
@@ -1055,13 +1268,13 @@ function toggleMenu() {
 
   </div>
 
-  <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
+  <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
 
     <!-- VIP GOLD -->
     <div class="program-card">
 
       <h3 class="text-2xl font-bold mb-8">
-        VIP GOLD
+        VIP GOLD💰
       </h3>
 
       <ul class="space-y-4 text-gray-300 mb-10">
@@ -1084,7 +1297,7 @@ function toggleMenu() {
     <div class="program-card">
 
       <h3 class="text-2xl font-bold mb-8">
-        VIP Crypto
+        VIP Crypto🪙
       </h3>
 
       <ul class="space-y-4 text-gray-300 mb-10">
@@ -1107,7 +1320,7 @@ function toggleMenu() {
     <div class="program-card">
 
       <h3 class="text-2xl font-bold mb-8">
-        PRO Trader
+        PRO Trader🎓
       </h3>
 
       <ul class="space-y-4 text-gray-300 mb-10">
@@ -1130,7 +1343,7 @@ function toggleMenu() {
     <div class="program-card">
 
       <h3 class="text-2xl font-bold mb-8">
-        Affiliate
+        Affiliate🎯
       </h3>
 
       <ul class="space-y-4 text-gray-300 mb-10">
@@ -1161,21 +1374,25 @@ function toggleMenu() {
 
 <!-- WHY -->
 <section data-aos="fade-up"
-         class="py-20 px-6">
+         class="py-16 md:py-20 px-4 sm:px-6">
 
   <div class="max-w-6xl mx-auto text-center">
 
-    <h2 class="text-3xl md:text-5xl font-bold mb-5">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-5 leading-tight">
       Kenapa Harus Kebunsaham?
     </h2>
 
-    <p class="text-gray-400 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+    <p class="text-gray-400
+       text-base sm:text-lg
+       max-w-2xl md:max-w-3xl
+       mx-auto
+       leading-relaxed">
       Kebunsaham sudah membantu ribuan member berkembang melalui
       live market update, daily informasi market, dan sistem trading
       yang terus berkembang sejak 2023.
     </p>
 
-    <div class="grid md:grid-cols-3 gap-5 mt-12">
+    <div class="grid md:grid-cols-3 gap-6 md:gap-5 mt-10 md:mt-12">
 
       <!-- CARD 1 -->
       <div class="relative overflow-hidden
@@ -1198,8 +1415,8 @@ function toggleMenu() {
 
         <div class="relative z-10">
 
-          <h3 class="text-4xl md:text-5xl font-bold text-green-400 mb-5">
-            120x
+          <h3 class="text-3xl md:text-4xl font-bold text-green-400 mb-5">
+            120x📈
           </h3>
 
           <p class="text-gray-300 leading-relaxed text-sm md:text-base">
@@ -1235,8 +1452,8 @@ function toggleMenu() {
 
         <div class="relative z-10">
 
-          <h3 class="text-4xl md:text-5xl font-bold text-green-400 mb-5">
-            32K+
+          <h3 class="text-3xl md:text-4xl font-bold text-green-400 mb-5">
+            32K+👤
           </h3>
 
           <p class="text-gray-300 leading-relaxed text-sm md:text-base">
@@ -1272,8 +1489,8 @@ function toggleMenu() {
 
         <div class="relative z-10">
 
-          <h3 class="text-4xl md:text-5xl font-bold text-green-400 mb-5">
-            LIVE
+          <h3 class="text-3xl md:text-4xl font-bold text-green-400 mb-5">
+            LIVE🔴
           </h3>
 
           <p class="text-gray-300 leading-relaxed text-sm md:text-base">
@@ -1299,11 +1516,11 @@ function toggleMenu() {
 
 <!-- CLOSING CTA -->
 <section data-aos="fade-up"
-         class="py-32 px-6 text-center">
+         class="py-24 px-6 text-center">
 
   <div class="max-w-4xl mx-auto">
 
-    <h2 class="text-4xl md:text-6xl font-bold leading-tight mb-8">
+    <h2 class="text-2xl md:text-4xl font-bold leading-tight mb-8">
 
       Kamu Bisa Terus
       Menonton Orang Lain Profit,
@@ -1317,7 +1534,7 @@ function toggleMenu() {
 
     </h2>
 
-    <p class="text-gray-400 text-xl leading-relaxed mb-12">
+    <p class="text-gray-400 text-base sm:text-lg md:text-xl leading-relaxed mb-8">
 
       Kebanyakan orang menunda terlalu lama.
       Padahal market tetap berjalan setiap hari.
