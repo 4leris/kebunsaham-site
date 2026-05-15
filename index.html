@@ -182,6 +182,28 @@ img {
   }
 }
 
+/* MOBILE */
+@media (max-width:640px){
+
+.slide{
+    grid-template-columns:1fr;
+}
+
+.slide-item{
+    max-width:92%;
+    margin:auto;
+}
+
+/* sembunyikan item ke-2 dan ke-3 */
+.slide-item:nth-child(2),
+.slide-item:nth-child(3){
+
+    display:none;
+
+}
+
+}
+
 /* =========================
    SLIDER CONTROLS
 ========================= */
