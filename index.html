@@ -6,6 +6,19 @@
   <title>Kebunsaham</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- GOOGLE ANALYTICS -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T3PMQKENHZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-T3PMQKENHZ');
+</script>
+
   <!-- TAILWIND -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -307,7 +320,11 @@ img {
 /* =========================
    FEATURED GRID
 ========================= */
+
 .program-card {
+
+  position: relative;
+  overflow: hidden;
 
   width: 100%;
 
@@ -333,6 +350,49 @@ img {
 
 }
 
+/* GREEN GLOW INSIDE CARD */
+
+.program-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: 35%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 320px;
+  height: 220px;
+
+  border-radius: 999px;
+
+  background:
+  radial-gradient(
+      ellipse,
+      rgba(34,197,94,.28) 0%,
+      rgba(34,197,94,.16) 35%,
+      rgba(34,197,94,.06) 60%,
+      transparent 80%
+  );
+
+  filter: blur(65px);
+
+  pointer-events: none;
+
+}
+
+/* KEEP CONTENT ABOVE GLOW */
+
+.program-card > * {
+
+  position: relative;
+
+  z-index: 2;
+
+}
+
 .program-card:hover {
 
   transform: translateY(-4px);
@@ -343,11 +403,11 @@ img {
 
 }
 
-@media (min-width: 768px) {
+@media (min-width:768px) {
 
   .program-card {
 
-    padding: 36px;
+    padding:36px;
 
   }
 
@@ -625,7 +685,8 @@ img {
 <!-- FLOATING BUTTON -->
 <a href="https://t.me/kebunsahamgrup"
    target="_blank"
-   class="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50">
+   class="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50"
+   onclick="gtag('event', 'click_telegram_community');">
 
   <div class="bg-gradient-to-r from-blue-500 to-black
               px-3 sm:px-4
@@ -654,7 +715,7 @@ img {
 
       <span class="bg-gradient-to-r from-green-400 to-emerald-300 text-transparent bg-clip-text">
 
-        Sinyal Gold Hingga +12.000%
+        Signal Gold Hingga +12.000%
         & Auto Trade Crypto
 
       </span>
@@ -824,7 +885,7 @@ img {
          class="pt-2 pb-20 px-6 text-center">
 
   <p class="text-gray-400 mb-6">
-    Lihat hasil testimonial member di grup WhatsApp
+    Lihat hasil testimonial member di saluran WhatsApp
   </p>
 
   <a href="https://www.whatsapp.com/channel/0029VauIjRY6rsQjOSuLV10e"
@@ -1098,17 +1159,16 @@ setupSlider("hasilSlider", "hasilDots");
       </h3>
 
       <ul class="space-y-4 text-gray-300 mb-10">
-        <li>• Sinyal Gold Harian</li>
+        <li>• Signal Gold Harian</li>
         <li>• Setup Entry Lengkap</li>
         <li>• Live Market Update</li>
         <li>• Risk Management</li>
       </ul>
 
-      <a href="https://wa.me/6281330536588"
-         class="main-btn w-full text-center">
-
-        Hubungi
-
+      <a href="https://wa.me/6281330536588?text=Halo%2C%20Saya%20mau%20join%20VIP%20Gold"
+          class="main-btn w-full text-center"
+          onclick="gtag('event', 'click_whatsapp_vip_gold');">
+          Hubungi
       </a>
 
     </div>
@@ -1127,8 +1187,9 @@ setupSlider("hasilSlider", "hasilDots");
         <li>• Sistem Algoritma</li>
       </ul>
 
-      <a href="https://wa.me/6281330536588"
-         class="main-btn w-full text-center">
+      <a href="https://wa.me/6281330536588?text=Halo%2C%20Saya%20mau%20join%20VIP%20Crypto"
+         class="main-btn w-full text-center"
+         onclick="gtag('event', 'click_whatsapp_vip_crypto');">
 
         Hubungi
 
@@ -1150,8 +1211,9 @@ setupSlider("hasilSlider", "hasilDots");
         <li>• Full Guidance</li>
       </ul>
 
-      <a href="https://wa.me/6281330536588"
-         class="main-btn w-full text-center">
+      <a href="https://wa.me/6281330536588?text=Halo%2C%20Saya%20mau%20ikut%20Pelatihan%20Pro%20Trader"
+         class="main-btn w-full text-center"
+         onclick="gtag('event', 'click_whatsapp_pro_trader');">
 
         Hubungi
 
@@ -1169,12 +1231,15 @@ setupSlider("hasilSlider", "hasilDots");
       <ul class="space-y-4 text-gray-300 mb-10">
         <li>• Membangun bisnis VIP Gold</li>
         <li>• Ternak Crypto</li>
-        <li>• Berpotensi Passive Income</li>
-        <li>• Target 2 Milliar / bulan</li>
+        <li class="flex items-start gap-1">
+            <span class="text-white-400 shrink-0">•</span>
+            <span>Passive Income Hingga 2 Miliar/bulan</span>
+        </li>
       </ul>
 
-      <a href="https://wa.me/6281330536588"
-         class="main-btn w-full text-center">
+      <a href="https://wa.me/6281330536588?text=Halo%2C%20Saya%20mau%20ikut%20Affiliate%20Income"
+         class="main-btn w-full text-center"
+         onclick="gtag('event', 'click_whatsapp_affiliate');">
 
         Hubungi
 
@@ -1314,9 +1379,12 @@ setupSlider("hasilSlider", "hasilDots");
           </h3>
 
           <p class="text-gray-300 leading-relaxed text-sm md:text-base">
-            Live market update setiap weekday
-            dan daily informasi market setiap hari.
-          </p>
+  Live harian di
+  <span class="text-white font-semibold">
+    TikTok dan YouTube
+  </span>
+   dengan informasi market setiap hari.
+</p>
 
         </div>
 
